@@ -6,7 +6,7 @@
 #
 # <https://github.com/outlyer-net/docker-public-ip-monitor>
 
-# Stage 0: Prepare files for stage
+# Stage 0: Prepare files for stage 1
 FROM alpine:latest AS stage0
 COPY imgroot /imgroot
 RUN sed -i -e '/^#/d' -e '/^[[:space:]]*$/d' /imgroot/data/services.txt

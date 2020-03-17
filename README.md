@@ -1,6 +1,10 @@
 # docker-public-ip-monitor
 
 Keep a record of your public IP address over time.
+\
+This is a multiarch image, with 32 and 64 bit support on PC and ARM.
+
+[![Image Size](https://images.microbadger.com/badges/image/outlyernet/public-ip-monitor.svg)][microbadger]
 
 ### Information
 

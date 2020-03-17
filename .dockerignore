@@ -1,0 +1,5 @@
+.git*
+ip-history.txt
+GNUmakefile
+crontab.example
+README.md

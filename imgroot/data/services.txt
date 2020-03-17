@@ -1,0 +1,16 @@
+# Services that return your IP *only* (no HTML, no ads, no extra text) and
+#  can be accessed over HTTPS
+# Sources:
+#  - https://superuser.com/questions/420969/services-that-just-return-your-public-ip-as-text
+#  - https://www.reddit.com/r/devops/comments/blh7kv/url_to_get_just_an_ip_with_no_garbage/
+# icanhazip FAQ: http://bit.ly/icanhazip-faq
+icanhazip.com
+checkip.amazonaws.com
+ipinfo.io/ip
+wtfismyip.com/text
+api.ipify.org
+ifconfig.io/ip
+www.moanmyip.com/simple
+ifconfig.co/ip
+ifconfig.me/ip
+ipecho.net/plain

@@ -13,17 +13,6 @@ build:
 		--tag $(IMAGE_NAME):$(shell date +%Y%m%d_%H%M%S) \
 		.
 
-
-# XXX: As of this writing (2020-03) running this with --load instead of --push (i.e. locally),
-#      fails. Support for multi-arch in the daemon is pending, see https://github.com/docker/buildx/issues/59
-push:
-	-$(MAKE) multiarch-bootstrap
-	$(DOCKER_BUILDX) build --platform $(ARCHITECTURES) \
-		--tag $(IMAGE_NAME) \
-		--push \
-		.
-	-$(MAKE) multiarch-unbootstrap
-
 # Live test with router and services mounted from the host, allows
 #  testing edits without a rebuild
 test: build ip-history.txt
@@ -43,9 +32,24 @@ test-update: build ip-history.txt
 		--entrypoint /update \
 		$(IMAGE_NAME)
 
+###########
+########### Rules below are for maintenance of the Docker Hub repository
+###########  and require credentials
+###########
+
+# XXX: As of this writing (2020-03) running this with --load instead of --push (i.e. locally),
+#      fails. Support for multi-arch in the daemon is pending, see https://github.com/docker/buildx/issues/59
+push:
+	-$(MAKE) multiarch-bootstrap
+	$(DOCKER_BUILDX) build --platform $(ARCHITECTURES) \
+		--tag $(IMAGE_NAME) \
+		--push \
+		.
+	-$(MAKE) multiarch-unbootstrap
+	$(MAKE) push-readme
+
 inspect:
 	$(DOCKER_BUILDX) imagetools inspect $(IMAGE_NAME)
-
 
 # Enable the new enhanced multi-arch support (requires Docker 19.03
 # and experimental mode)

@@ -1,1 +1,3 @@
-* * * * * 
+# Updates the public IP log every 15 minutes
+# This assumes a container with name public-ip-monitor is kept
+*/15 * * * * docker exec public-ip-monitor /update

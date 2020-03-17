@@ -59,3 +59,14 @@ multiarch-bootstrap:
 
 multiarch-unbootstrap:
 	$(DOCKER_BUILDX) rm $(MULTIARCH_BUILDER_NAME)
+
+# Since currently multi-arch images can't use Docker Hub's autobuilders,
+# the README won't get updated automatically, this rule updates it.
+push-readme:
+	docker run --rm \
+		-v $(PWD)/README.md:/data/README.md \
+		-e DOCKERHUB_USERNAME=$(shell echo $(IMAGE_NAME) | cut -d/ -f1) \
+		-e DOCKERHUB_REPO_PREFIX=$(shell echo $(IMAGE_NAME) | cut -d/ -f1) \
+		-e DOCKERHUB_REPO_NAME=$(shell echo $(IMAGE_NAME) | cut -d/ -f2) \
+		-e DOCKERHUB_PASSWORD=$(shell relevation hub.docker.com 2>/dev/null | sed -E -e '/^Password/!d' -e 's/^(\w|:)*\s//') \
+		sheogorath/readme-to-dockerhub

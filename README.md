@@ -3,6 +3,8 @@
 Keep a record of your public IP address over time.
 \
 This is a multiarch image, with 32 and 64 bit support on PC and ARM.
+\
+**NOTE** I'm still experimenting with the format of the log, using this image at this time can lead to unexpected changes in behaviour between updates.
 
 [![Image Size](https://images.microbadger.com/badges/image/outlyernet/public-ip-monitor.svg)][microbadger]
 

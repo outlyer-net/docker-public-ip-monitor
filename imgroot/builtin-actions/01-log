@@ -1,0 +1,8 @@
+#!/bin/sh
+
+TIMESTAMP=$1
+IP=$2
+
+TARGET='/data/ip-history.txt'
+
+echo $TIMESTAMP $IP >> $TARGET

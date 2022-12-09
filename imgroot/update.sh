@@ -24,4 +24,10 @@ else
         IP=0.0.0.0
     fi
 fi
-echo $TIMESTAMP $IP >> /data/ip-history.txt
+LAST_IP=`test -f /last.txt && cat /last.txt || echo 0.0.0.0`
+echo $IP > /last.txt
+
+run-parts -a "$TIMESTAMP" -a "$IP" -a "$LAST_IP" /builtin-actions/
+if [ -d /data/actions ]; then
+    exec run-parts -a "$TIMESTAMP" -a "$IP" -a "$LAST_IP" /data/actions/
+fi
